@@ -1,9 +1,99 @@
 /* add css module styles here (optional) */
 
-.test {
-  margin: 2em;
-  padding: 0.5em;
-  border: 2px solid #000;
-  font-size: 2em;
-  text-align: center;
+.sliderContainer {
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blanchedalmond;
+}
+
+.imageContainer {
+  width: 450px;
+  height: 450px;
+}
+
+.imageDim {
+  width: 450px;
+  height: 450px;
+  position: absolute;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+.sliderButton {
+  background: none;
+  border: none;
+  font-size: 44px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 40px;
+  color: grey;
+  z-index: 9999;
+}
+
+/* Sliding Animation */
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-250%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInLeft {
+  animation-name: slideInLeft;
+  animation-duration: 1s;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translate3d(250%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInRight {
+  animation-name: slideInRight;
+  animation-duration: 1s;
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(-250%, 0, 0);
+  }
+}
+
+.slideOutLeft {
+  animation-name: slideOutLeft;
+  animation-duration: 1s;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(250%, 0, 0);
+  }
+}
+
+.slideOutRight {
+  animation-name: slideOutRight;
+  animation-duration: 1s;
 }
