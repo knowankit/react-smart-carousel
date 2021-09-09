@@ -9,13 +9,11 @@
 }
 
 .imageContainer {
-  width: 450px;
-  height: 450px;
 }
 
 .imageDim {
-  width: 450px;
-  height: 450px;
+  width: inherit;
+  height: inherit;
   position: absolute;
   display: inline-block;
   border-radius: 10%;

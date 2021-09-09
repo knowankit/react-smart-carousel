@@ -3,8 +3,8 @@ import styles from './styles.module.css'
 
 interface Props {
   images: string[]
-  leftIcon?: JSX.Element
-  rightIcon?: JSX.Element
+  height?: number
+  width?: number
 }
 
 export const ReactSmartCarousel = ({ images }: Props) => {
@@ -14,7 +14,7 @@ export const ReactSmartCarousel = ({ images }: Props) => {
   const DEG = 3
   const MIDDLE = Math.floor(images.length / 2)
 
-  const renderImages = () => {
+  const renderImagesOnInitialLoad = () => {
     return filteredImagesRecord.map((image, index) => (
       <div
         className={`${styles.imageDim} smart-carousel-image`}
@@ -24,6 +24,7 @@ export const ReactSmartCarousel = ({ images }: Props) => {
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
           transform:
             MIDDLE >= index
               ? `rotate(${DEG + index * 3}deg)`
@@ -48,17 +49,26 @@ export const ReactSmartCarousel = ({ images }: Props) => {
 
       setTimeout(() => {
         if (imgElement.classList.contains('right')) {
+          imgElement.classList.remove('right')
           imgElement.classList.remove('_styles-module__slideOutRight__1FcGQ')
-          // imgElement.classList.add(styles.slideInRight)
-          // imgElement.classList.remove(styles.slideInRight)
+          imgElement.classList.add(styles.slideInRight)
+
+          setTimeout(() => {
+            imgElement.classList.remove(styles.slideInRight)
+          }, index * 1 * 100)
         }
 
         if (imgElement.classList.contains('left')) {
-          imgElement.classList.remove('_styles-module__slideOutLeft__1FcGQ')
-          // imgElement.classList.add(styles.slideInLeft)
-          // imgElement.classList.remove(styles.slideInLeft)
+          imgElement.classList.remove('left')
+
+          imgElement.classList.remove('_styles-module__slideOutLeft__2J0jH')
+          imgElement.classList.add(styles.slideInLeft)
+
+          setTimeout(() => {
+            imgElement.classList.remove(styles.slideInLeft)
+          }, index * 1 * 100)
         }
-      }, index * 1 + 100)
+      }, index * 1 * 300)
     }
   }
 
@@ -81,6 +91,8 @@ export const ReactSmartCarousel = ({ images }: Props) => {
     updateImages()
 
     image?.classList.add(styles.slideOutRight)
+
+    // This is important to add as this will be used to check thed direction of the animation while bringing it back
     image?.classList.add('right')
   }
 
@@ -92,6 +104,8 @@ export const ReactSmartCarousel = ({ images }: Props) => {
     await updateImages()
 
     image?.classList.add(styles.slideOutLeft)
+
+    // This is important to add as this will be used to check thed direction of the animation while bringing it back
     image?.classList.add('left')
   }
 
@@ -100,8 +114,12 @@ export const ReactSmartCarousel = ({ images }: Props) => {
       <button className={styles.sliderButton} onClick={onLeftClick}>
         {'<'}
       </button>
-      <div className={styles.imageContainer} id='images-container'>
-        {renderImages()}
+      <div
+        className={styles.imageContainer}
+        id='images-container'
+        style={{ height: '450px', width: '450px' }}
+      >
+        {renderImagesOnInitialLoad()}
       </div>
       <button className={styles.sliderButton} onClick={onRightClick}>
         {'>'}
