@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './styles.module.css'
 
 interface Props {
@@ -8,17 +8,16 @@ interface Props {
 }
 
 export const ReactSmartCarousel = ({ images }: Props) => {
-  const [filteredImagesRecord, setFilteredImagesRecord] = useState(images)
-  const [currentImage, setCurrentImage] = useState(images.length - 1)
+  let filteredImagesRecord = [...images]
+  let currentImage = filteredImagesRecord.length - 1
 
   const DEG = 3
+  const MIDDLE = Math.floor(images.length / 2)
 
-  const renderImages = (images: string[]) => {
-    const middle = Math.floor(images.length / 2)
-
-    return images.map((image, index) => (
+  const renderImages = () => {
+    return filteredImagesRecord.map((image, index) => (
       <div
-        className={styles.imageDim}
+        className={`${styles.imageDim} smart-carousel-image`}
         key={index}
         onClick={(e) => onImageClick(e)}
         id={`smart-carousel-image-${index}`}
@@ -26,7 +25,7 @@ export const ReactSmartCarousel = ({ images }: Props) => {
           backgroundImage: `url(${image})`,
           backgroundSize: 'cover',
           transform:
-            middle >= index
+            MIDDLE >= index
               ? `rotate(${DEG + index * 3}deg)`
               : `rotate(${DEG - index * 3}deg)`
         }}
@@ -38,16 +37,40 @@ export const ReactSmartCarousel = ({ images }: Props) => {
     e.target.style.transform = `rotate(0deg)`
   }
 
-  const updateImages = (image: HTMLElement | null) => {
-    setTimeout(() => {
-      const temp =
-        filteredImagesRecord.length === 0 ? images : filteredImagesRecord
-      setFilteredImagesRecord([...temp])
-      setCurrentImage(filteredImagesRecord.length - 1)
-      image?.remove()
-    }, 1000)
+  const loadBackImages = () => {
+    const imagesContainer = document.querySelectorAll('.smart-carousel-image')
 
-    filteredImagesRecord.splice(-1, 1)
+    filteredImagesRecord = [...images]
+    currentImage = filteredImagesRecord.length - 1
+
+    for (let index = 0; index < imagesContainer.length; index++) {
+      const imgElement = imagesContainer[index]
+
+      setTimeout(() => {
+        if (imgElement.classList.contains('right')) {
+          imgElement.classList.remove('_styles-module__slideOutRight__1FcGQ')
+          // imgElement.classList.add(styles.slideInRight)
+          // imgElement.classList.remove(styles.slideInRight)
+        }
+
+        if (imgElement.classList.contains('left')) {
+          imgElement.classList.remove('_styles-module__slideOutLeft__1FcGQ')
+          // imgElement.classList.add(styles.slideInLeft)
+          // imgElement.classList.remove(styles.slideInLeft)
+        }
+      }, index * 1 + 100)
+    }
+  }
+
+  const updateImages = () => {
+    setTimeout(() => {
+      filteredImagesRecord.splice(-1, 1)
+      currentImage = filteredImagesRecord.length - 1
+
+      if (filteredImagesRecord.length === 0) {
+        loadBackImages()
+      }
+    }, 300)
   }
 
   const onRightClick = () => {
@@ -55,19 +78,21 @@ export const ReactSmartCarousel = ({ images }: Props) => {
       `smart-carousel-image-${currentImage}`
     )
 
-    updateImages(image)
+    updateImages()
 
     image?.classList.add(styles.slideOutRight)
+    image?.classList.add('right')
   }
 
-  const onLeftClick = () => {
+  const onLeftClick = async () => {
     const image = document.getElementById(
       `smart-carousel-image-${currentImage}`
     )
 
-    updateImages(image)
+    await updateImages()
 
     image?.classList.add(styles.slideOutLeft)
+    image?.classList.add('left')
   }
 
   return (
@@ -75,8 +100,8 @@ export const ReactSmartCarousel = ({ images }: Props) => {
       <button className={styles.sliderButton} onClick={onLeftClick}>
         {'<'}
       </button>
-      <div className={styles.imageContainer}>
-        {renderImages(filteredImagesRecord)}
+      <div className={styles.imageContainer} id='images-container'>
+        {renderImages()}
       </div>
       <button className={styles.sliderButton} onClick={onRightClick}>
         {'>'}
