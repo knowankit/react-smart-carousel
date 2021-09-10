@@ -1,6 +1,6 @@
 {
   "name": "react-smart-carousel",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "A react carousel which remembers how it was slid.",
   "author": "knowankit",
   "keywords": ["react-smart-carousel", "carousel", "react-slider", "react-image-slider"],
