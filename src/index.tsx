@@ -30,15 +30,10 @@ export const ReactSmartCarousel = ({ images }: Props) => {
         <img
           alt={`smart-carousel-image-${index}`}
           src={image}
-          onClick={(e) => onImageClick(e)}
           className={styles.image}
         />
       </div>
     ))
-  }
-
-  const onImageClick = (e: any) => {
-    e.target.style.transform = `rotate(0deg)`
   }
 
   const loadBackImages = () => {
