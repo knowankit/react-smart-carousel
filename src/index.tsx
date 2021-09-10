@@ -17,20 +17,23 @@ export const ReactSmartCarousel = ({ images }: Props) => {
   const renderImagesOnInitialLoad = () => {
     return filteredImagesRecord.map((image, index) => (
       <div
-        className={`${styles.imageDim} smart-carousel-image`}
+        className={`${styles.imageParent} smart-carousel-image`}
         key={index}
-        onClick={(e) => onImageClick(e)}
         id={`smart-carousel-image-${index}`}
         style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
           transform:
             MIDDLE >= index
               ? `rotate(${DEG + index * 3}deg)`
               : `rotate(${DEG - index * 3}deg)`
         }}
-      />
+      >
+        <img
+          alt={`smart-carousel-image-${index}`}
+          src={image}
+          onClick={(e) => onImageClick(e)}
+          className={styles.image}
+        />
+      </div>
     ))
   }
 
@@ -114,13 +117,7 @@ export const ReactSmartCarousel = ({ images }: Props) => {
       <button className={styles.sliderButton} onClick={onLeftClick}>
         {'<'}
       </button>
-      <div
-        className={styles.imageContainer}
-        id='images-container'
-        style={{ height: '450px', width: '450px' }}
-      >
-        {renderImagesOnInitialLoad()}
-      </div>
+      <div className={styles.imageContainer}>{renderImagesOnInitialLoad()}</div>
       <button className={styles.sliderButton} onClick={onRightClick}>
         {'>'}
       </button>

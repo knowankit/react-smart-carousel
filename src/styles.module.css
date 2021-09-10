@@ -1,22 +1,27 @@
 /* add css module styles here (optional) */
 
 .sliderContainer {
-  padding: 50px;
+  width: inherit;
+  height: inherit;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: blanchedalmond;
 }
 
 .imageContainer {
+  width: 80%;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.imageDim {
-  width: inherit;
-  height: inherit;
-  position: absolute;
-  display: inline-block;
+.image {
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 10%;
+}
+
+.imageParent {
+  position: absolute;
 }
 
 .sliderButton {
@@ -25,8 +30,9 @@
   font-size: 44px;
   cursor: pointer;
   font-weight: bold;
-  margin: 40px;
-  color: grey;
+  margin: 20px;
+  display: inline-block;
+  position: relative;
   z-index: 9999;
 }
 
