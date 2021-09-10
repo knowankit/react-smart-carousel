@@ -10,7 +10,24 @@ import five from './images/5.jpg'
 import six from './images/6.jpg'
 
 const App = () => {
-  return <ReactSmartCarousel images={[one, two, three, four, five, six]} />
+  return (
+    <div
+      style={{
+        width: '100vw',
+        display: 'flex',
+        justifyContent: 'center'
+      }}
+    >
+      <div
+        style={{
+          height: '600px',
+          width: '600px'
+        }}
+      >
+        <ReactSmartCarousel images={[one, two, three, four, five, six]} />
+      </div>
+    </div>
+  )
 }
 
 export default App
