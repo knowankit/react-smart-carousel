@@ -48,7 +48,7 @@ export const ReactSmartCarousel = ({ images }: Props) => {
       setTimeout(() => {
         if (imgElement.classList.contains('right')) {
           imgElement.classList.remove('right')
-          imgElement.classList.remove('_styles-module__slideOutRight__1FcGQ')
+          imgElement.classList.remove(styles.slideOutRight)
           imgElement.classList.add(styles.slideInRight)
 
           setTimeout(() => {
@@ -59,7 +59,7 @@ export const ReactSmartCarousel = ({ images }: Props) => {
         if (imgElement.classList.contains('left')) {
           imgElement.classList.remove('left')
 
-          imgElement.classList.remove('_styles-module__slideOutLeft__2J0jH')
+          imgElement.classList.remove(styles.slideOutLeft)
           imgElement.classList.add(styles.slideInLeft)
 
           setTimeout(() => {
