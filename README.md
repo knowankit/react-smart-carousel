@@ -46,6 +46,10 @@ const Example = () =>  {
 
 * `images` - An array of images
 
+## Demo
+
+[Live preview](https://knowankit.github.io/react-smart-carousel/)
+
 ## License
 
 MIT © [knowankit](https://github.com/knowankit)
