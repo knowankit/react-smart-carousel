@@ -26,7 +26,7 @@ yarn add react-smart-carousel
 ```tsx
 import React, { Component } from 'react'
 
-import ReactSmartCarousel from 'react-smart-carousel'
+import { ReactSmartCarousel } from 'react-smart-carousel'
 import 'react-smart-carousel/dist/index.css'
 
 import one from './images/1.jpg'
@@ -36,11 +36,10 @@ import four from './images/4.jpg'
 import five from './images/5.jpg'
 import six from './images/6.jpg'
 
-class Example extends Component {
-  render() {
+const Example = () =>  {
     return <ReactSmartCarousel images={[one, two, three, four, five, six]} />
-  }
 }
+
 ```
 
 ## Props

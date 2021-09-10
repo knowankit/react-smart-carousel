@@ -1,8 +1,9 @@
 {
   "name": "react-smart-carousel",
-  "version": "0.3.5",
-  "description": "Made with ♥️",
+  "version": "0.3.6",
+  "description": "A react carousel which remembers how it was slid.",
   "author": "knowankit",
+  "keywords": ["react-smart-carousel", "carousel", "react-slider", "react-image-slider"],
   "license": "MIT",
   "repository": "knowankit/react-smart-carousel",
   "main": "dist/index.js",
