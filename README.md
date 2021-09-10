@@ -50,6 +50,12 @@ const Example = () =>  {
 
 [Live preview](https://knowankit.github.io/react-smart-carousel/)
 
+## Other interesting repositories
+
+- [My Portfolio](https://github.com/knowankit/knowankit.com)
+- [Trello Clone](https://github.com/knowankit/trello-clone)
+
+
 ## License
 
 MIT © [knowankit](https://github.com/knowankit)
